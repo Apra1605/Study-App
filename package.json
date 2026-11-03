@@ -1,0 +1,6 @@
+{
+  "name": "study-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A static personal study platform for GitHub Pages with Firebase and browser-based Groq AI."
+}

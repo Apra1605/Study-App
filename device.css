@@ -1,0 +1,68 @@
+/* Device-aware layout refinements; these complement the feature-specific breakpoints. */
+:root {
+  --app-height: 100dvh;
+}
+
+.streak-meta { margin-top: 12px; color: #828d80; font-size: 9px; }
+.streak-meta span { padding: 0 5px; color: #a6bd74; }
+
+@media (min-width: 761px) and (max-width: 1050px) {
+  .page-wrap { padding-left: clamp(22px, 4vw, 34px); padding-right: clamp(22px, 4vw, 34px); }
+  .topbar { padding-left: 22px; padding-right: 22px; }
+  .practice-layout { grid-template-columns: minmax(0, 1fr); }
+  .materials-layout { grid-template-columns: minmax(150px, .55fr) minmax(0, 1.45fr); }
+  .tutor-layout { grid-template-columns: minmax(175px, .65fr) minmax(0, 1.6fr); }
+  .board-toolbar { gap: 8px; }
+}
+
+@media (pointer: coarse) {
+  button, [role="button"], .nav-item, .tool-button, .choice {
+    touch-action: manipulation;
+  }
+  button, .nav-item, .tool-button { min-height: 42px; }
+  input:not([type="checkbox"]):not([type="radio"]), select, textarea {
+    min-height: 44px;
+    font-size: max(16px, 1em);
+  }
+  .choice { min-height: 46px; padding-top: 9px; padding-bottom: 9px; }
+  .board-toolbar .tool-button { min-width: 48px; }
+}
+
+@media (max-width: 760px) {
+  .app-shell { min-height: var(--app-height, 100dvh); }
+  .sidebar {
+    height: var(--app-height, 100dvh);
+    padding-bottom: calc(14px + env(safe-area-inset-bottom));
+  }
+  .main-area, .view, .page-wrap { min-width: 0; }
+  .topbar {
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+  }
+  .page-wrap { padding-bottom: calc(24px + env(safe-area-inset-bottom)); }
+  .practice-toolbar, .exam-setup, .board-toolbar { max-width: 100%; }
+  .board-toolbar { overflow-x: auto; overscroll-behavior-x: contain; }
+  .board-tool-tabs { flex: 0 0 auto; }
+  .chat-composer { padding-bottom: max(10px, env(safe-area-inset-bottom)); }
+  .auth-screen { min-height: var(--app-height, 100dvh); padding: 18px; }
+}
+
+@media (max-width: 560px) {
+  .subject-grid, .subject-grid-large { grid-template-columns: minmax(0, 1fr); }
+  .practice-toolbar, .exam-setup { align-items: stretch; }
+  .practice-toolbar label, .exam-setup label { min-width: 0; width: 100%; }
+  .practice-toolbar select, .practice-toolbar input,
+  .exam-setup select, .exam-setup input { width: 100%; }
+  .practice-toolbar .button { margin-left: 0; width: 100%; }
+  .quiz-panel, .flashcard-panel, .exam-stage, .progress-panel { padding: 14px; }
+  .page-title-row { flex-wrap: wrap; }
+  .page-title-row > .button { width: 100%; }
+  .save-indicator { max-width: 110px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .topbar { height: 44px; }
+  .page-wrap { padding-top: 22px; }
+  .tutor-layout { height: calc(var(--app-height, 100dvh) - 44px); }
+  .welcome-message { margin-top: 2vh; }
+}
